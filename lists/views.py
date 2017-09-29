@@ -5,5 +5,8 @@ from django.shortcuts import render
 
 def home_page(request):
     title = 'Obey the Testing Goat!'
-    return render(request, 'lists/home.html', locals())
+    context = {'title': title,
+               'new_item_text': request.POST.get('item_text', '')
+               }
+    return render(request, 'lists/home.html', context)
 
