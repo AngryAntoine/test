@@ -2,15 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
+    <br><br>
     <h1>Your To-Do lists</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="text" name="item_text" placeholder="Enter a to-do item" id="id_new_item"/>
     </form>
-    <table id="id_list_table">
+    <table id="id_list_table" class="table table-hover table-striped table-bordered">
         <tr>
-            <td>{{ title }}</td>
-            <td>{{ new_item_text }}</td>
+            <td>1: {{ new_item_text }}</td>
         </tr>
     </table>
 {% endblock content %}
