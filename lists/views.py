@@ -1,12 +1,13 @@
-from django.shortcuts import render
-
-# Create your views here.
+from django.core.urlresolvers import reverse
+from django.shortcuts import render, redirect
+from .models import Item
 
 
 def home_page(request):
-    title = 'Obey the Testing Goat!'
-    context = {'title': title,
-               'new_item_text': request.POST.get('item_text', '')
-               }
-    return render(request, 'lists/home.html', context)
+    items = Item.objects.all()
+    if request.method == 'POST':
+        Item.objects.create(text=request.POST.get('item_text'))
+        return redirect('lists:home_page')
+    return render(request, 'lists/home.html', locals())
+
 

@@ -6,5 +6,11 @@ class Item(models.Model):
     text = models.TextField()
 
     def __unicode__(self):
+        if not self.title:
+            return 'To do item №%d' % self.pk
         return '%s' % self.title
 
+    def __str__(self):
+        if not self.title:
+            return 'To do item №%d' % self.pk
+        return '%s' % self.title
